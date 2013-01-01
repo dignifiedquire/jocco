@@ -1,29 +1,29 @@
-# **Docco** is a quick-and-dirty, hundred-line-long, literate-programming-style
+# **Jocco** is a quick-and-dirty, hundred-line-long, literate-programming-style
 # documentation generator. It produces HTML
 # that displays your comments alongside your code. Comments are passed through
 # [Markdown](http://daringfireball.net/projects/markdown/syntax), and code is
 # passed through [Pygments](http://pygments.org/) syntax highlighting, if it
 # is present on the system. 
-# This page is the result of running Docco against its own source file.
+# This page is the result of running Jocco against its own source file.
 #
-# If you install Docco, you can run it from the command-line:
+# If you install Jocco, you can run it from the command-line:
 #
-#     docco src/*.coffee
+#     jocco src/*.coffee
 #
 # ...will generate an HTML documentation page for each of the named source files, 
 # with a menu linking to the other pages, saving it into a `docs` folder.
 #
-# The [source for Docco](http://github.com/jashkenas/docco) is available on GitHub,
+# The [source for Jocco](http://github.com/dignifiedquire/jocco) is available on GitHub,
 # and released under the MIT license.
 #
-# To install Docco, first make sure you have [Node.js](http://nodejs.org/),
+# To install Jocco, first make sure you have [Node.js](http://nodejs.org/),
 # [Pygments](http://pygments.org/) (install the latest dev version of Pygments
 # from [its Mercurial repo](https://bitbucket.org/birkenfeld/pygments-main)), and
 # [CoffeeScript](http://coffeescript.org/). Then, with NPM:
 #
-#     sudo npm install -g docco
+#     sudo npm install -g jocco
 #
-# Docco can be used to process CoffeeScript, JavaScript, Ruby, Python, or TeX files.
+# Jocco can be used to process CoffeeScript, JavaScript, Ruby, Python, or TeX files.
 # Only single-line comments are processed -- block comments are ignored.
 #
 #### Partners in Crime:
@@ -157,7 +157,7 @@ generateHtml = (source, sections, config) ->
     path.join(config.output, path.basename(filepath, path.extname(filepath)) + '.html')   
   title = path.basename source
   dest  = destination source
-  html  = config.doccoTemplate {
+  html  = config.joccoTemplate {
     title      : title, 
     sections   : sections, 
     sources    : config.sources, 
@@ -165,7 +165,7 @@ generateHtml = (source, sections, config) ->
     destination: destination
     css        : path.basename(config.css)
   }
-  console.log "docco: #{source} -> #{dest}"
+  console.log "jocco: #{source} -> #{dest}"
   fs.writeFileSync dest, html
 
 #### Helpers & Setup
@@ -249,19 +249,19 @@ highlightStart = '<div class="highlight"><pre>'
 # The end of each Pygments highlight block.
 highlightEnd   = '</pre></div>'
 
-# Extract the docco version from `package.json`
+# Extract the jocco version from `package.json`
 version = JSON.parse(fs.readFileSync("#{__dirname}/../package.json")).version
 
 # Default configuration options.
 defaults =
-  template: "#{__dirname}/../resources/docco.jst"
-  css     : "#{__dirname}/../resources/docco.css"
+  template: "#{__dirname}/../resources/jocco.jst"
+  css     : "#{__dirname}/../resources/jocco.css"
   output  : "docs/"
 
 
 # ### Run from Commandline
   
-# Run Docco from a set of command line arguments.  
+# Run Jocco from a set of command line arguments.  
 #  
 # 1. Parse command line using [Commander JS](https://github.com/visionmedia/commander.js).
 # 2. Document sources, or print the usage help if none are specified.
@@ -272,7 +272,7 @@ run = (args=process.argv) ->
     .option("-o, --output [path]","use a custom output path",defaults.output)
     .option("-t, --template [file]","use a custom .jst template",defaults.template)
     .parse(args)
-    .name = "docco"
+    .name = "jocco"
   if commander.args.length
     document(commander.args.slice(),commander)
   else
@@ -280,7 +280,7 @@ run = (args=process.argv) ->
 
 # ### Document Sources
 
-# Run Docco over a list of `sources` with the given `options`.
+# Run Jocco over a list of `sources` with the given `options`.
 #  
 # 1. Construct config to use by taking `defaults` first, then  merging in `options`
 # 2. Generate the resolved source list, filtering out unknown types.
@@ -295,13 +295,13 @@ document = (sources, options = {}, callback = null) ->
   resolved = []
   resolved = resolved.concat(resolveSource(src)) for src in sources
   config.sources = resolved.filter((source) -> getLanguage source).sort()
-  console.log "docco: skipped unknown type (#{m})" for m in resolved when m not in config.sources  
+  console.log "jocco: skipped unknown type (#{m})" for m in resolved when m not in config.sources  
   
-  config.doccoTemplate = template fs.readFileSync(config.template).toString()
-  doccoStyles = fs.readFileSync(config.css).toString()
+  config.joccoTemplate = template fs.readFileSync(config.template).toString()
+  joccoStyles = fs.readFileSync(config.css).toString()
 
   ensureDirectory config.output, ->
-    fs.writeFileSync path.join(config.output,path.basename(config.css)), doccoStyles
+    fs.writeFileSync path.join(config.output,path.basename(config.css)), joccoStyles
     files = config.sources.slice()
     nextFile = -> 
       callback() if callback? and not files.length
@@ -328,7 +328,7 @@ resolveSource = (source) ->
 
 # ### Exports
 
-# Information about docco, and functions for programatic usage.
+# Information about jocco, and functions for programatic usage.
 exports[key] = value for key, value of {
   run           : run
   document      : document

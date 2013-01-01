@@ -1,31 +1,31 @@
-<!DOCTYPE html>  <html> <head>   <title>docco.coffee</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">   <link rel="stylesheet" media="all" href="resources/docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>          <ul class="sections">           <li id="title">             <div class="annotation">                 <h1>docco.coffee</h1>             </div>         </li>                              <li id="section-1">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>                           <p><strong>Docco</strong> is a quick-and-dirty, hundred-line-long, literate-programming-style
+<!DOCTYPE html>  <html> <head>   <title>jocco.coffee</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <meta name="viewport" content="width=device-width, target-densitydpi=160dpi, initial-scale=1.0; maximum-scale=1.0; user-scalable=0;">   <link rel="stylesheet" media="all" href="resources/jocco.css" /> </head> <body>   <div id="container">     <div id="background"></div>          <ul class="sections">           <li id="title">             <div class="annotation">                 <h1>jocco.coffee</h1>             </div>         </li>                              <li id="section-1">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>                           <p><strong>Jocco</strong> is a quick-and-dirty, hundred-line-long, literate-programming-style
 documentation generator. It produces HTML
 that displays your comments alongside your code. Comments are passed through
 <a href="http://daringfireball.net/projects/markdown/syntax">Markdown</a>, and code is
 passed through <a href="http://pygments.org/">Pygments</a> syntax highlighting, if it
 is present on the system. 
-This page is the result of running Docco against its own source file.</p>
+This page is the result of running Jocco against its own source file.</p>
 
-<p>If you install Docco, you can run it from the command-line:</p>
+<p>If you install Jocco, you can run it from the command-line:</p>
 
-<pre><code>docco src/*.coffee
+<pre><code>jocco src/*.coffee
 </code></pre>
 
 <p>...will generate an HTML documentation page for each of the named source files, 
 with a menu linking to the other pages, saving it into a <code>docs</code> folder.</p>
 
-<p>The <a href="http://github.com/jashkenas/docco">source for Docco</a> is available on GitHub,
+<p>The <a href="http://github.com/dignifiedquire/jocco">source for Jocco</a> is available on GitHub,
 and released under the MIT license.</p>
 
-<p>To install Docco, first make sure you have <a href="http://nodejs.org/">Node.js</a>,
+<p>To install Jocco, first make sure you have <a href="http://nodejs.org/">Node.js</a>,
 <a href="http://pygments.org/">Pygments</a> (install the latest dev version of Pygments
 from <a href="https://bitbucket.org/birkenfeld/pygments-main">its Mercurial repo</a>), and
 <a href="http://coffeescript.org/">CoffeeScript</a>. Then, with NPM:</p>
 
-<pre><code>sudo npm install -g docco
+<pre><code>sudo npm install -g jocco
 </code></pre>
 
-<p>Docco can be used to process CoffeeScript, JavaScript, Ruby, Python, or TeX files.
+<p>Jocco can be used to process CoffeeScript, JavaScript, Ruby, Python, or TeX files.
 Only single-line comments are processed -- block comments are ignored.</p>
 
 <h3>Partners in Crime:</h3>
@@ -65,7 +65,7 @@ and merging them into an HTML template.</p>
     <span class="k">throw</span> <span class="nx">error</span> <span class="k">if</span> <span class="nx">error</span>
     <span class="nv">code = </span><span class="nx">buffer</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span>
     <span class="nv">sections = </span><span class="nx">parse</span> <span class="nx">source</span><span class="p">,</span> <span class="nx">code</span>
-    <span class="nx">highlight</span> <span class="nx">source</span><span class="p">,</span> <span class="nx">sections</span><span class="p">,</span> <span class="nf">-&gt;</span>
+    <span class="nx">highlight</span> <span class="nx">source</span><span class="p">,</span> <span class="nx">sections</span><span class="p">,</span> <span class="o">-&gt;</span>
       <span class="nx">generateHtml</span> <span class="nx">source</span><span class="p">,</span> <span class="nx">sections</span><span class="p">,</span> <span class="nx">config</span>
       <span class="nx">callback</span><span class="p">()</span></pre></div></div>                      </li>                              <li id="section-4">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-4">&#182;</a>               </div>                           
 
@@ -122,12 +122,12 @@ string wherever the marker occurs.</p>
   <span class="nv">code = </span><span class="p">(</span><span class="nx">section</span><span class="p">.</span><span class="nx">codeText</span> <span class="k">for</span> <span class="nx">section</span> <span class="k">in</span> <span class="nx">sections</span><span class="p">).</span><span class="nx">join</span> <span class="nx">language</span><span class="p">.</span><span class="nx">codeSplitText</span>
   <span class="nv">docs = </span><span class="p">(</span><span class="nx">section</span><span class="p">.</span><span class="nx">docsText</span> <span class="k">for</span> <span class="nx">section</span> <span class="k">in</span> <span class="nx">sections</span><span class="p">).</span><span class="nx">join</span> <span class="nx">language</span><span class="p">.</span><span class="nx">docsSplitText</span>
   
-  <span class="nx">pygments</span><span class="p">.</span><span class="nx">stderr</span><span class="p">.</span><span class="nx">on</span> <span class="s">&#39;data&#39;</span><span class="p">,</span> <span class="nf">-&gt;</span>
-  <span class="nx">pygments</span><span class="p">.</span><span class="nx">stdin</span><span class="p">.</span><span class="nx">on</span> <span class="s">&#39;error&#39;</span><span class="p">,</span> <span class="nf">-&gt;</span>
-  <span class="nx">pygments</span><span class="p">.</span><span class="nx">stdout</span><span class="p">.</span><span class="nx">on</span> <span class="s">&#39;data&#39;</span><span class="p">,</span> <span class="nf">(result) -&gt;</span>
+  <span class="nx">pygments</span><span class="p">.</span><span class="nx">stderr</span><span class="p">.</span><span class="kc">on</span> <span class="s">&#39;data&#39;</span><span class="p">,</span> <span class="o">-&gt;</span>
+  <span class="nx">pygments</span><span class="p">.</span><span class="nx">stdin</span><span class="p">.</span><span class="kc">on</span> <span class="s">&#39;error&#39;</span><span class="p">,</span> <span class="o">-&gt;</span>
+  <span class="nx">pygments</span><span class="p">.</span><span class="nx">stdout</span><span class="p">.</span><span class="kc">on</span> <span class="s">&#39;data&#39;</span><span class="p">,</span> <span class="nf">(result) -&gt;</span>
     <span class="nx">output</span> <span class="o">+=</span> <span class="nx">result</span> <span class="k">if</span> <span class="nx">result</span>
     
-  <span class="nx">pygments</span><span class="p">.</span><span class="nx">on</span> <span class="s">&#39;exit&#39;</span><span class="p">,</span> <span class="nf">-&gt;</span>
+  <span class="nx">pygments</span><span class="p">.</span><span class="kc">on</span> <span class="s">&#39;exit&#39;</span><span class="p">,</span> <span class="o">-&gt;</span>
     <span class="nv">output = </span><span class="nx">output</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="nx">highlightStart</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">).</span><span class="nx">replace</span><span class="p">(</span><span class="nx">highlightEnd</span><span class="p">,</span> <span class="s">&#39;&#39;</span><span class="p">)</span>
     <span class="k">if</span> <span class="nx">output</span> <span class="o">is</span> <span class="s">&#39;&#39;</span>
       <span class="nv">codeFragments = </span><span class="p">(</span><span class="nx">htmlEscape</span> <span class="nx">section</span><span class="p">.</span><span class="nx">codeText</span> <span class="k">for</span> <span class="nx">section</span> <span class="k">in</span> <span class="nx">sections</span><span class="p">)</span>
@@ -165,7 +165,7 @@ the specified output path.</p>
     <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">output</span><span class="p">,</span> <span class="nx">path</span><span class="p">.</span><span class="nx">basename</span><span class="p">(</span><span class="nx">filepath</span><span class="p">,</span> <span class="nx">path</span><span class="p">.</span><span class="nx">extname</span><span class="p">(</span><span class="nx">filepath</span><span class="p">))</span> <span class="o">+</span> <span class="s">&#39;.html&#39;</span><span class="p">)</span>   
   <span class="nv">title = </span><span class="nx">path</span><span class="p">.</span><span class="nx">basename</span> <span class="nx">source</span>
   <span class="nv">dest  = </span><span class="nx">destination</span> <span class="nx">source</span>
-  <span class="nv">html  = </span><span class="nx">config</span><span class="p">.</span><span class="nx">doccoTemplate</span> <span class="p">{</span>
+  <span class="nv">html  = </span><span class="nx">config</span><span class="p">.</span><span class="nx">joccoTemplate</span> <span class="p">{</span>
     <span class="nv">title      : </span><span class="nx">title</span><span class="p">,</span> 
     <span class="nv">sections   : </span><span class="nx">sections</span><span class="p">,</span> 
     <span class="nv">sources    : </span><span class="nx">config</span><span class="p">.</span><span class="nx">sources</span><span class="p">,</span> 
@@ -173,7 +173,7 @@ the specified output path.</p>
     <span class="nv">destination: </span><span class="nx">destination</span>
     <span class="nv">css        : </span><span class="nx">path</span><span class="p">.</span><span class="nx">basename</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">css</span><span class="p">)</span>
   <span class="p">}</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&quot;docco: </span><span class="si">#{</span><span class="nx">source</span><span class="si">}</span><span class="s"> -&gt; </span><span class="si">#{</span><span class="nx">dest</span><span class="si">}</span><span class="s">&quot;</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&quot;jocco: </span><span class="si">#{</span><span class="nx">source</span><span class="si">}</span><span class="s"> -&gt; </span><span class="si">#{</span><span class="nx">dest</span><span class="si">}</span><span class="s">&quot;</span>
   <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFileSync</span> <span class="nx">dest</span><span class="p">,</span> <span class="nx">html</span></pre></div></div>                      </li>                              <li id="section-8">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-8">&#182;</a>               </div>                           
 
 <h3>Helpers &amp; Setup</h3>
@@ -207,23 +207,23 @@ symbol that indicates a comment. To add a new language, modify the file.</p>
 
 <p>Does the line begin with a comment?</p>
 
-             </div>                          <div class="content"><div class="highlight"><pre>  <span class="nv">l.commentMatcher = </span><span class="sr">///^\s*</span><span class="si">#{</span><span class="nx">l</span><span class="p">.</span><span class="nx">symbol</span><span class="si">}</span><span class="sr">\s?///</span></pre></div></div>                      </li>                              <li id="section-14">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-14">&#182;</a>               </div>                           
+             </div>                          <div class="content"><div class="highlight"><pre>  <span class="nv">l.commentMatcher = </span><span class="sr">///^\s*</span><span class="c1">#{l.symbol}\s?///</span></pre></div></div>                      </li>                              <li id="section-14">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-14">&#182;</a>               </div>                           
 
 <p>Ignore <a href="http://en.wikipedia.org/wiki/Shebang_(Unix)">hashbangs</a>
 and interpolations...</p>
 
-             </div>                          <div class="content"><div class="highlight"><pre>  <span class="nv">l.commentFilter = </span><span class="sr">/(^#![/]|^\s*#\{)/</span></pre></div></div>                      </li>                              <li id="section-15">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-15">&#182;</a>               </div>                           
+             </div>                          <div class="content"><div class="highlight"><pre>  <span class="sr">l.commentFilter = /(^</span><span class="c1">#![/]|^\s*#\{)/</span></pre></div></div>                      </li>                              <li id="section-15">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-15">&#182;</a>               </div>                           
 
 <p>The dividing token we feed into Pygments, to delimit the boundaries between
 sections.</p>
 
-             </div>                          <div class="content"><div class="highlight"><pre>  <span class="nv">l.codeSplitText = </span><span class="s">&quot;\n</span><span class="si">#{</span><span class="nx">l</span><span class="p">.</span><span class="nx">symbol</span><span class="si">}</span><span class="s">DIVIDER\n&quot;</span></pre></div></div>                      </li>                              <li id="section-16">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-16">&#182;</a>               </div>                           
+             </div>                          <div class="content"><div class="highlight"><pre>  <span class="sr">l.codeSplitText = &quot;\n</span><span class="c1">#{l.symbol}DIVIDER\n&quot;</span></pre></div></div>                      </li>                              <li id="section-16">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-16">&#182;</a>               </div>                           
 
 <p>The mirror of <code>codeSplitText</code> that we expect Pygments to return. We can split
 on this to recover the original sections.
 Note: the class is "c" for Python and "c1" for the other languages</p>
 
-             </div>                          <div class="content"><div class="highlight"><pre>  <span class="nv">l.codeSplitHtml = </span><span class="sr">///\n*&lt;span\sclass=&quot;c1?&quot;&gt;</span><span class="si">#{</span><span class="nx">l</span><span class="p">.</span><span class="nx">symbol</span><span class="si">}</span><span class="sr">DIVIDER&lt;\/span&gt;\n*///</span></pre></div></div>                      </li>                              <li id="section-17">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-17">&#182;</a>               </div>                           
+             </div>                          <div class="content"><div class="highlight"><pre>  <span class="sr">l.codeSplitHtml = ///</span><span class="err">\</span><span class="nx">n</span><span class="o">*&lt;</span><span class="nx">span</span><span class="err">\</span><span class="nx">sclass</span><span class="o">=</span><span class="s">&quot;c1?&quot;</span><span class="o">&gt;</span><span class="c1">#{l.symbol}DIVIDER&lt;\/span&gt;\n*///</span></pre></div></div>                      </li>                              <li id="section-17">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-17">&#182;</a>               </div>                           
 
 <p>The dividing token we feed into Showdown, to delimit the boundaries between
 sections.</p>
@@ -233,87 +233,87 @@ sections.</p>
 <p>The mirror of <code>docsSplitText</code> that we expect Showdown to return. We can split
 on this to recover the original sections.</p>
 
-             </div>                          <div class="content"><div class="highlight"><pre>  <span class="nv">l.docsSplitHtml = </span><span class="sr">///&lt;h1&gt;</span><span class="si">#{</span><span class="nx">l</span><span class="p">.</span><span class="nx">name</span><span class="si">}</span><span class="sr">DOCDIVIDER&lt;/h1&gt;///</span></pre></div></div>                      </li>                              <li id="section-19">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-19">&#182;</a>               </div>                           
+             </div>                          <div class="content"><div class="highlight"><pre>  <span class="nv">l.docsSplitHtml = </span><span class="sr">///&lt;h1&gt;</span><span class="c1">#{l.name}DOCDIVIDER&lt;/h1&gt;///</span></pre></div></div>                      </li>                              <li id="section-19">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-19">&#182;</a>               </div>                           
 
 <p>Get the current language we're documenting, based on the extension.</p>
 
-             </div>                          <div class="content"><div class="highlight"><pre><span class="nv">getLanguage = </span><span class="nf">(source) -&gt;</span> <span class="nx">languages</span><span class="p">[</span><span class="nx">path</span><span class="p">.</span><span class="nx">extname</span><span class="p">(</span><span class="nx">source</span><span class="p">)]</span></pre></div></div>                      </li>                              <li id="section-20">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-20">&#182;</a>               </div>                           
+             </div>                          <div class="content"><div class="highlight"><pre><span class="sr">getLanguage = (source) -&gt; languages[path.extname(source)]</span></pre></div></div>                      </li>                              <li id="section-20">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-20">&#182;</a>               </div>                           
 
 <p>Ensure that the destination directory exists.</p>
 
-             </div>                          <div class="content"><div class="highlight"><pre><span class="nv">ensureDirectory = </span><span class="nf">(dir, cb, made=null) -&gt;</span>
-  <span class="nv">mode = </span><span class="nb">parseInt</span> <span class="s">&#39;0777&#39;</span><span class="p">,</span> <span class="mi">8</span>
-  <span class="nx">fs</span><span class="p">.</span><span class="nx">mkdir</span> <span class="nx">dir</span><span class="p">,</span> <span class="nx">mode</span><span class="p">,</span> <span class="nf">(er) -&gt;</span>
-    <span class="k">return</span> <span class="nx">cb</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">made</span> <span class="o">||</span> <span class="nx">dir</span> <span class="k">if</span> <span class="o">not</span> <span class="nx">er</span>
-    <span class="k">if</span> <span class="nx">er</span><span class="p">.</span><span class="nx">code</span> <span class="o">==</span> <span class="s">&#39;ENOENT&#39;</span>
-      <span class="k">return</span> <span class="nx">ensureDirectory</span> <span class="nx">path</span><span class="p">.</span><span class="nx">dirname</span><span class="p">(</span><span class="nx">dir</span><span class="p">),</span> <span class="nf">(er, made) -&gt;</span>
-        <span class="k">if</span> <span class="nx">er</span> <span class="k">then</span> <span class="nx">cb</span> <span class="nx">er</span><span class="p">,</span> <span class="nx">made</span> <span class="k">else</span> <span class="nx">ensureDirectory</span> <span class="nx">dir</span><span class="p">,</span> <span class="nx">cb</span><span class="p">,</span> <span class="nx">made</span>
-    <span class="nx">cb</span> <span class="nx">er</span><span class="p">,</span> <span class="nx">made</span></pre></div></div>                      </li>                              <li id="section-21">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-21">&#182;</a>               </div>                           
+             </div>                          <div class="content"><div class="highlight"><pre><span class="sr">ensureDirectory = (dir, cb, made=null) -&gt;</span>
+<span class="sr">  mode = parseInt &#39;0777&#39;, 8</span>
+<span class="sr">  fs.mkdir dir, mode, (er) -&gt;</span>
+<span class="sr">    return cb null, made || dir if not er</span>
+<span class="sr">    if er.code == &#39;ENOENT&#39;</span>
+<span class="sr">      return ensureDirectory path.dirname(dir), (er, made) -&gt;</span>
+<span class="sr">        if er then cb er, made else ensureDirectory dir, cb, made</span>
+<span class="sr">    cb er, made</span></pre></div></div>                      </li>                              <li id="section-21">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-21">&#182;</a>               </div>                           
 
 <p>Micro-templating, originally by John Resig, borrowed by way of
 <a href="http://documentcloud.github.com/underscore/">Underscore.js</a>.</p>
 
-             </div>                          <div class="content"><div class="highlight"><pre><span class="nv">template = </span><span class="nf">(str) -&gt;</span>
-  <span class="k">new</span> <span class="nb">Function</span> <span class="s">&#39;obj&#39;</span><span class="p">,</span>
-    <span class="s">&#39;var p=[],print=function(){p.push.apply(p,arguments);};&#39;</span> <span class="o">+</span>
-    <span class="s">&#39;with(obj){p.push(\&#39;&#39;</span> <span class="o">+</span>
-    <span class="nx">str</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/[\r\t\n]/g</span><span class="p">,</span> <span class="s">&quot; &quot;</span><span class="p">)</span>
-       <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&#39;(?=[^&lt;]*%&gt;)/g</span><span class="p">,</span><span class="s">&quot;\t&quot;</span><span class="p">)</span>
-       <span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s">&quot;&#39;&quot;</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s">&quot;\\&#39;&quot;</span><span class="p">)</span>
-       <span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s">&quot;\t&quot;</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s">&quot;&#39;&quot;</span><span class="p">)</span>
-       <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/&lt;%=(.+?)%&gt;/g</span><span class="p">,</span> <span class="s">&quot;&#39;,$1,&#39;&quot;</span><span class="p">)</span>
-       <span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s">&#39;&lt;%&#39;</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s">&quot;&#39;);&quot;</span><span class="p">)</span>
-       <span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s">&#39;%&gt;&#39;</span><span class="p">).</span><span class="nx">join</span><span class="p">(</span><span class="s">&quot;p.push(&#39;&quot;</span><span class="p">)</span> <span class="o">+</span>
-       <span class="s">&quot;&#39;);}return p.join(&#39;&#39;);&quot;</span></pre></div></div>                      </li>                              <li id="section-22">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-22">&#182;</a>               </div>                           
+             </div>                          <div class="content"><div class="highlight"><pre><span class="sr">template = (str) -&gt;</span>
+<span class="sr">  new Function &#39;obj&#39;,</span>
+<span class="sr">    &#39;var p=[],print=function(){p.push.apply(p,arguments);};&#39; +</span>
+<span class="sr">    &#39;with(obj){p.push(\&#39;&#39; +</span>
+<span class="sr">    str.replace(/[\r\t\n]/g, &quot; &quot;)</span>
+<span class="sr">       .replace(/&#39;(?=[^&lt;]*%&gt;)/g,&quot;\t&quot;)</span>
+<span class="sr">       .split(&quot;&#39;&quot;).join(&quot;\\&#39;&quot;)</span>
+<span class="sr">       .split(&quot;\t&quot;).join(&quot;&#39;&quot;)</span>
+<span class="sr">       .replace(/&lt;%=(.+?)%&gt;/g, &quot;&#39;,$1,&#39;&quot;)</span>
+<span class="sr">       .split(&#39;&lt;%&#39;).join(&quot;&#39;);&quot;)</span>
+<span class="sr">       .split(&#39;%&gt;&#39;).join(&quot;p.push(&#39;&quot;) +</span>
+<span class="sr">       &quot;&#39;);}return p.join(&#39;&#39;);&quot;</span></pre></div></div>                      </li>                              <li id="section-22">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-22">&#182;</a>               </div>                           
 
 <p>The start of each Pygments highlight block.</p>
 
-             </div>                          <div class="content"><div class="highlight"><pre><span class="nv">highlightStart = </span><span class="s">&#39;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&#39;</span></pre></div></div>                      </li>                              <li id="section-23">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-23">&#182;</a>               </div>                           
+             </div>                          <div class="content"><div class="highlight"><pre><span class="sr">highlightStart = &#39;&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&#39;</span></pre></div></div>                      </li>                              <li id="section-23">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-23">&#182;</a>               </div>                           
 
 <p>The end of each Pygments highlight block.</p>
 
-             </div>                          <div class="content"><div class="highlight"><pre><span class="nv">highlightEnd   = </span><span class="s">&#39;&lt;/pre&gt;&lt;/div&gt;&#39;</span></pre></div></div>                      </li>                              <li id="section-24">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-24">&#182;</a>               </div>                           
+             </div>                          <div class="content"><div class="highlight"><pre><span class="sr">highlightEnd   = &#39;&lt;/pre&gt;&lt;/div&gt;&#39;</span></pre></div></div>                      </li>                              <li id="section-24">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-24">&#182;</a>               </div>                           
 
-<p>Extract the docco version from <code>package.json</code></p>
+<p>Extract the jocco version from <code>package.json</code></p>
 
-             </div>                          <div class="content"><div class="highlight"><pre><span class="nv">version = </span><span class="nx">JSON</span><span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">__dirname</span><span class="si">}</span><span class="s">/../package.json&quot;</span><span class="p">)).</span><span class="nx">version</span></pre></div></div>                      </li>                              <li id="section-25">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-25">&#182;</a>               </div>                           
+             </div>                          <div class="content"><div class="highlight"><pre><span class="sr">version = JSON.parse(fs.readFileSync(&quot;</span><span class="c1">#{__dirname}/../package.json&quot;)).version</span></pre></div></div>                      </li>                              <li id="section-25">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-25">&#182;</a>               </div>                           
 
 <p>Default configuration options.</p>
 
-             </div>                          <div class="content"><div class="highlight"><pre><span class="nv">defaults =</span>
-  <span class="nv">template: </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">__dirname</span><span class="si">}</span><span class="s">/../resources/docco.jst&quot;</span>
-  <span class="nv">css     : </span><span class="s">&quot;</span><span class="si">#{</span><span class="nx">__dirname</span><span class="si">}</span><span class="s">/../resources/resources/docco.css&quot;</span>
-  <span class="nv">output  : </span><span class="s">&quot;docs/&quot;</span></pre></div></div>                      </li>                              <li id="section-26">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-26">&#182;</a>               </div>                           
+             </div>                          <div class="content"><div class="highlight"><pre><span class="sr">defaults =</span>
+<span class="sr">  template: &quot;</span><span class="c1">#{__dirname}/../resources/jocco.jst&quot;</span>
+  <span class="sr">css     : &quot;</span><span class="c1">#{__dirname}/../resources/resources/jocco.css&quot;</span>
+  <span class="sr">output  : &quot;docs/&quot;</span></pre></div></div>                      </li>                              <li id="section-26">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-26">&#182;</a>               </div>                           
 
 <h3>Run from Commandline</h3>
 
              </div>                      </li>                              <li id="section-27">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-27">&#182;</a>               </div>                           
 
-<p>Run Docco from a set of command line arguments.  </p>
+<p>Run Jocco from a set of command line arguments.  </p>
 
 <ol>
 <li>Parse command line using <a href="https://github.com/visionmedia/commander.js">Commander JS</a>.</li>
 <li>Document sources, or print the usage help if none are specified.</li>
 </ol>
 
-             </div>                          <div class="content"><div class="highlight"><pre><span class="nv">run = </span><span class="nf">(args=process.argv) -&gt;</span>
-  <span class="nx">commander</span><span class="p">.</span><span class="nx">version</span><span class="p">(</span><span class="nx">version</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">usage</span><span class="p">(</span><span class="s">&quot;[options] &lt;filePattern ...&gt;&quot;</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">option</span><span class="p">(</span><span class="s">&quot;-c, --css [file]&quot;</span><span class="p">,</span><span class="s">&quot;use a custom css file&quot;</span><span class="p">,</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">css</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">option</span><span class="p">(</span><span class="s">&quot;-o, --output [path]&quot;</span><span class="p">,</span><span class="s">&quot;use a custom output path&quot;</span><span class="p">,</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">output</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">option</span><span class="p">(</span><span class="s">&quot;-t, --template [file]&quot;</span><span class="p">,</span><span class="s">&quot;use a custom .jst template&quot;</span><span class="p">,</span><span class="nx">defaults</span><span class="p">.</span><span class="nx">template</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">parse</span><span class="p">(</span><span class="nx">args</span><span class="p">)</span>
-    <span class="p">.</span><span class="nv">name = </span><span class="s">&quot;docco&quot;</span>
-  <span class="k">if</span> <span class="nx">commander</span><span class="p">.</span><span class="nx">args</span><span class="p">.</span><span class="nx">length</span>
-    <span class="nb">document</span><span class="p">(</span><span class="nx">commander</span><span class="p">.</span><span class="nx">args</span><span class="p">.</span><span class="nx">slice</span><span class="p">(),</span><span class="nx">commander</span><span class="p">)</span>
-  <span class="k">else</span>
-    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">commander</span><span class="p">.</span><span class="nx">helpInformation</span><span class="p">()</span></pre></div></div>                      </li>                              <li id="section-28">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-28">&#182;</a>               </div>                           
+             </div>                          <div class="content"><div class="highlight"><pre><span class="sr">run = (args=process.argv) -&gt;</span>
+<span class="sr">  commander.version(version)</span>
+<span class="sr">    .usage(&quot;[options] &lt;filePattern ...&gt;&quot;)</span>
+<span class="sr">    .option(&quot;-c, --css [file]&quot;,&quot;use a custom css file&quot;,defaults.css)</span>
+<span class="sr">    .option(&quot;-o, --output [path]&quot;,&quot;use a custom output path&quot;,defaults.output)</span>
+<span class="sr">    .option(&quot;-t, --template [file]&quot;,&quot;use a custom .jst template&quot;,defaults.template)</span>
+<span class="sr">    .parse(args)</span>
+<span class="sr">    .name = &quot;jocco&quot;</span>
+<span class="sr">  if commander.args.length</span>
+<span class="sr">    document(commander.args.slice(),commander)</span>
+<span class="sr">  else</span>
+<span class="sr">    console.log commander.helpInformation()</span></pre></div></div>                      </li>                              <li id="section-28">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-28">&#182;</a>               </div>                           
 
 <h3>Document Sources</h3>
 
              </div>                      </li>                              <li id="section-29">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-29">&#182;</a>               </div>                           
 
-<p>Run Docco over a list of <code>sources</code> with the given <code>options</code>.</p>
+<p>Run Jocco over a list of <code>sources</code> with the given <code>options</code>.</p>
 
 <ol>
 <li>Construct config to use by taking <code>defaults</code> first, then  merging in <code>options</code></li>
@@ -323,26 +323,26 @@ on this to recover the original sections.</p>
 document each source, and invoke the completion callback if it is specified.</li>
 </ol>
 
-             </div>                          <div class="content"><div class="highlight"><pre><span class="nb">document</span> <span class="o">=</span> <span class="nf">(sources, options = {}, callback = null) -&gt;</span>
-  <span class="nv">config = </span><span class="p">{}</span>
-  <span class="nx">config</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">defaults</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="k">for</span> <span class="nx">key</span><span class="p">,</span><span class="nx">value</span> <span class="k">of</span> <span class="nx">defaults</span>
-  <span class="nx">config</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span> <span class="k">for</span> <span class="nx">key</span><span class="p">,</span><span class="nx">value</span> <span class="k">of</span> <span class="nx">options</span> <span class="k">if</span> <span class="nx">key</span> <span class="k">of</span> <span class="nx">defaults</span>
+             </div>                          <div class="content"><div class="highlight"><pre><span class="sr">document = (sources, options = {}, callback = null) -&gt;</span>
+<span class="sr">  config = {}</span>
+<span class="sr">  config[key] = defaults[key] for key,value of defaults</span>
+<span class="sr">  config[key] = value for key,value of options if key of defaults</span>
 
-  <span class="nv">resolved = </span><span class="p">[]</span>
-  <span class="nv">resolved = </span><span class="nx">resolved</span><span class="p">.</span><span class="nx">concat</span><span class="p">(</span><span class="nx">resolveSource</span><span class="p">(</span><span class="nx">src</span><span class="p">))</span> <span class="k">for</span> <span class="nx">src</span> <span class="k">in</span> <span class="nx">sources</span>
-  <span class="nv">config.sources = </span><span class="nx">resolved</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nf">(source) -&gt;</span> <span class="nx">getLanguage</span> <span class="nx">source</span><span class="p">).</span><span class="nx">sort</span><span class="p">()</span>
-  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&quot;docco: skipped unknown type (</span><span class="si">#{</span><span class="nx">m</span><span class="si">}</span><span class="s">)&quot;</span> <span class="k">for</span> <span class="nx">m</span> <span class="k">in</span> <span class="nx">resolved</span> <span class="k">when</span> <span class="nx">m</span> <span class="o">not</span> <span class="k">in</span> <span class="nx">config</span><span class="p">.</span><span class="nx">sources</span>  
+<span class="sr">  resolved = []</span>
+<span class="sr">  resolved = resolved.concat(resolveSource(src)) for src in sources</span>
+<span class="sr">  config.sources = resolved.filter((source) -&gt; getLanguage source).sort()</span>
+<span class="sr">  console.log &quot;jocco: skipped unknown type (</span><span class="c1">#{m})&quot; for m in resolved when m not in config.sources  </span>
   
-  <span class="nv">config.doccoTemplate = </span><span class="nx">template</span> <span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">template</span><span class="p">).</span><span class="nx">toString</span><span class="p">()</span>
-  <span class="nv">doccoStyles = </span><span class="nx">fs</span><span class="p">.</span><span class="nx">readFileSync</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">css</span><span class="p">).</span><span class="nx">toString</span><span class="p">()</span>
+  <span class="sr">config.joccoTemplate = template fs.readFileSync(config.template).toString()</span>
+<span class="sr">  joccoStyles = fs.readFileSync(config.css).toString()</span>
 
-  <span class="nx">ensureDirectory</span> <span class="nx">config</span><span class="p">.</span><span class="nx">output</span><span class="p">,</span> <span class="nf">-&gt;</span>
-    <span class="nx">fs</span><span class="p">.</span><span class="nx">writeFileSync</span> <span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">output</span><span class="p">,</span><span class="nx">path</span><span class="p">.</span><span class="nx">basename</span><span class="p">(</span><span class="nx">config</span><span class="p">.</span><span class="nx">css</span><span class="p">)),</span> <span class="nx">doccoStyles</span>
-    <span class="nv">files = </span><span class="nx">config</span><span class="p">.</span><span class="nx">sources</span><span class="p">.</span><span class="nx">slice</span><span class="p">()</span>
-    <span class="nv">nextFile = </span><span class="nf">-&gt;</span> 
-      <span class="nx">callback</span><span class="p">()</span> <span class="k">if</span> <span class="nx">callback</span><span class="o">?</span> <span class="o">and</span> <span class="o">not</span> <span class="nx">files</span><span class="p">.</span><span class="nx">length</span>
-      <span class="nx">generateDocumentation</span> <span class="nx">files</span><span class="p">.</span><span class="nx">shift</span><span class="p">(),</span> <span class="nx">config</span><span class="p">,</span> <span class="nx">nextFile</span> <span class="k">if</span> <span class="nx">files</span><span class="p">.</span><span class="nx">length</span>
-    <span class="nx">nextFile</span><span class="p">()</span></pre></div></div>                      </li>                              <li id="section-30">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-30">&#182;</a>               </div>                           
+<span class="sr">  ensureDirectory config.output, -&gt;</span>
+<span class="sr">    fs.writeFileSync path.join(config.output,path.basename(config.css)), joccoStyles</span>
+<span class="sr">    files = config.sources.slice()</span>
+<span class="sr">    nextFile = -&gt; </span>
+<span class="sr">      callback() if callback? and not files.length</span>
+<span class="sr">      generateDocumentation files.shift(), config, nextFile if files.length</span>
+<span class="sr">    nextFile()</span></pre></div></div>                      </li>                              <li id="section-30">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-30">&#182;</a>               </div>                           
 
 <h3>Resolve Wildcard Source Inputs</h3>
 
@@ -356,30 +356,30 @@ document each source, and invoke the completion callback if it is specified.</li
 an array of files in the path that match it.</li>
 </ol>
 
-             </div>                          <div class="content"><div class="highlight"><pre><span class="nv">resolveSource = </span><span class="nf">(source) -&gt;</span>
-  <span class="k">return</span> <span class="nx">source</span> <span class="k">if</span> <span class="o">not</span> <span class="nx">source</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/([\*\?])/</span><span class="p">)</span>
-  <span class="nv">regex_str = </span><span class="nx">path</span><span class="p">.</span><span class="nx">basename</span><span class="p">(</span><span class="nx">source</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\./g</span><span class="p">,</span> <span class="s">&quot;\\$&amp;&quot;</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\*/</span><span class="p">,</span><span class="s">&quot;.*&quot;</span><span class="p">)</span>
-    <span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/\?/</span><span class="p">,</span><span class="s">&quot;.&quot;</span><span class="p">)</span>
-  <span class="nv">regex = </span><span class="k">new</span> <span class="nb">RegExp</span><span class="p">(</span><span class="s">&#39;^(&#39;</span> <span class="o">+</span> <span class="nx">regex_str</span> <span class="o">+</span> <span class="s">&#39;)$&#39;</span><span class="p">)</span>
-  <span class="nv">file_path = </span><span class="nx">path</span><span class="p">.</span><span class="nx">dirname</span><span class="p">(</span><span class="nx">source</span><span class="p">)</span>
-  <span class="nv">files = </span><span class="nx">fs</span><span class="p">.</span><span class="nx">readdirSync</span> <span class="nx">file_path</span>
-  <span class="k">return</span> <span class="p">(</span><span class="nx">path</span><span class="p">.</span><span class="nx">join</span><span class="p">(</span><span class="nx">file_path</span><span class="p">,</span><span class="nx">file</span><span class="p">)</span> <span class="k">for</span> <span class="nx">file</span> <span class="k">in</span> <span class="nx">files</span> <span class="k">when</span> <span class="nx">file</span><span class="p">.</span><span class="nx">match</span> <span class="nx">regex</span><span class="p">)</span></pre></div></div>                      </li>                              <li id="section-32">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-32">&#182;</a>               </div>                           
+             </div>                          <div class="content"><div class="highlight"><pre><span class="sr">resolveSource = (source) -&gt;</span>
+<span class="sr">  return source if not source.match(/([\*\?])/)</span>
+<span class="sr">  regex_str = path.basename(source)</span>
+<span class="sr">    .replace(/\./g, &quot;\\$&amp;&quot;)</span>
+<span class="sr">    .replace(/\*/,&quot;.*&quot;)</span>
+<span class="sr">    .replace(/\?/,&quot;.&quot;)</span>
+<span class="sr">  regex = new RegExp(&#39;^(&#39; + regex_str + &#39;)$&#39;)</span>
+<span class="sr">  file_path = path.dirname(source)</span>
+<span class="sr">  files = fs.readdirSync file_path</span>
+<span class="sr">  return (path.join(file_path,file) for file in files when file.match regex)</span></pre></div></div>                      </li>                              <li id="section-32">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-32">&#182;</a>               </div>                           
 
 <h3>Exports</h3>
 
              </div>                      </li>                              <li id="section-33">             <div class="annotation">               <div class="pilwrap">                 <a class="pilcrow" href="#section-33">&#182;</a>               </div>                           
 
-<p>Information about docco, and functions for programatic usage.</p>             </div>                          <div class="content"><div class="highlight"><pre><span class="nx">exports</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">value</span> <span class="k">for</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span> <span class="k">of</span> <span class="p">{</span>
-  <span class="nv">run           : </span><span class="nx">run</span>
-  <span class="nb">document</span>      <span class="o">:</span> <span class="nb">document</span>
-  <span class="nv">parse         : </span><span class="nx">parse</span>
-  <span class="nv">resolveSource : </span><span class="nx">resolveSource</span>
-  <span class="nv">version       : </span><span class="nx">version</span>
-  <span class="nv">defaults      : </span><span class="nx">defaults</span>
-  <span class="nv">languages     : </span><span class="nx">languages</span>
-  <span class="nv">ensureDirectory: </span><span class="nx">ensureDirectory</span>
-<span class="p">}</span>
+<p>Information about jocco, and functions for programatic usage.</p>             </div>                          <div class="content"><div class="highlight"><pre><span class="sr">exports[key] = value for key, value of {</span>
+<span class="sr">  run           : run</span>
+<span class="sr">  document      : document</span>
+<span class="sr">  parse         : parse</span>
+<span class="sr">  resolveSource : resolveSource</span>
+<span class="sr">  version       : version</span>
+<span class="sr">  defaults      : defaults</span>
+<span class="sr">  languages     : languages</span>
+<span class="sr">  ensureDirectory: ensureDirectory</span>
+<span class="sr">}</span>
 
 </pre></div></div>                      </li>              </ul>    </div> </body> </html> 

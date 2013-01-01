@@ -1,38 +1,38 @@
-Docco         = require './src/docco'
+Jocco         = require './src/jocco'
 CoffeeScript  = require 'coffee-script'
 {spawn, exec} = require 'child_process'
 fs            = require 'fs'
 path          = require 'path'
 
 option '-p', '--prefix [DIR]', 'set the installation prefix for `cake install`'
-option '-w', '--watch', 'continually build the docco library'
+option '-w', '--watch', 'continually build the jocco library'
 
-task 'build', 'build the docco library', (options) ->
+task 'build', 'build the jocco library', (options) ->
   coffee = spawn 'node', ['./node_modules/coffee-script/bin/coffee','-c' + (if options.watch then 'w' else ''), '-o', 'lib', 'src']
   coffee.stdout.on 'data', (data) -> console.log data.toString().trim()
   coffee.stderr.on 'data', (data) -> console.log data.toString().trim()
 
-task 'install', 'install the `docco` command into /usr/local (or --prefix)', (options) ->
+task 'install', 'install the `jocco` command into /usr/local (or --prefix)', (options) ->
   base = options.prefix or '/usr/local'
-  lib  = base + '/lib/docco'
+  lib  = base + '/lib/jocco'
   exec([
     'mkdir -p ' + lib
     'cp -rf bin README resources vendor lib ' + lib
-    'ln -sf ' + lib + '/bin/docco ' + base + '/bin/docco'
+    'ln -sf ' + lib + '/bin/jocco ' + base + '/bin/jocco'
   ].join(' && '), (err, stdout, stderr) ->
    if err then console.error stderr
   )
 
-task 'doc', 'rebuild the Docco documentation', ->
+task 'doc', 'rebuild the Jocco documentation', ->
   exec([
-    'bin/docco src/docco.coffee'
-    'sed "s/docco.css/resources\\/docco.css/" < docs/docco.html > index.html'
+    'bin/jocco src/jocco.coffee'
+    'sed "s/jocco.css/resources\\/jocco.css/" < docs/jocco.html > index.html'
     'rm -r docs'
   ].join(' && '), (err) ->
     throw err if err
   )
 
-task 'test', 'run the Docco test suite', ->
+task 'test', 'run the Jocco test suite', ->
   runTests()
     
 # Simple test runner, adapted from [CoffeeScript](http://coffeescript.org/).
@@ -64,7 +64,7 @@ runTests = () ->
       result
 
   global[name] = wrapAssert(func,name) for name, func of require 'assert'    
-  global.Docco = Docco
+  global.Jocco = Jocco
 
   # Our test helper function for delimiting different test cases.
   global.test = (description, fn) ->
